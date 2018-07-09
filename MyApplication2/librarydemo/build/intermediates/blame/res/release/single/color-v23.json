@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\color-v23\\design_tint_password_toggle.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-alpha3.aar\\4c1d4f4f3c4be54e4b53e30c4b1979c4\\res\\color-v23\\design_tint_password_toggle.xml"
+    }
+]

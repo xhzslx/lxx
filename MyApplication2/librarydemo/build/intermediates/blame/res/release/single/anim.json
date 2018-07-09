@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-alpha3.aar\\4c1d4f4f3c4be54e4b53e30c4b1979c4\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\pickerview_dialog_scale_in.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\Android-PickerView-3.2.7.aar\\8a9a6de2d0c4821637bd2c55ce7f1dd0\\res\\anim\\pickerview_dialog_scale_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_tooltip_exit.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_tooltip_exit.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-alpha3.aar\\4c1d4f4f3c4be54e4b53e30c4b1979c4\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\pickerview_slide_out_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\Android-PickerView-3.2.7.aar\\8a9a6de2d0c4821637bd2c55ce7f1dd0\\res\\anim\\pickerview_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\pickerview_slide_in_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\Android-PickerView-3.2.7.aar\\8a9a6de2d0c4821637bd2c55ce7f1dd0\\res\\anim\\pickerview_slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_tooltip_enter.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\pickerview_dialog_scale_out.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\Android-PickerView-3.2.7.aar\\8a9a6de2d0c4821637bd2c55ce7f1dd0\\res\\anim\\pickerview_dialog_scale_out.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-alpha3.aar\\4c1d4f4f3c4be54e4b53e30c4b1979c4\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-alpha3.aar\\4c1d4f4f3c4be54e4b53e30c4b1979c4\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudio\\project\\HappyWeekendProject\\MyApplication2\\librarydemo\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\mayn\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-alpha3.aar\\2a66d47f92676013f3e2a6d14a9ac4a3\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    }
+]
