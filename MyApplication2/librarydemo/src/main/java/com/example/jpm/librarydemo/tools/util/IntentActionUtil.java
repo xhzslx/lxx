@@ -762,5 +762,9 @@ public class IntentActionUtil {
         }
         return false;
     }
-
+    public static void showIntentSetFlags(Activity context, Class<?> clzz, int Flags) {
+        Intent intent = new Intent(context, clzz);
+        intent.setFlags(Flags);
+        context.startActivity(intent);
+    }
 }
