@@ -1,7 +1,9 @@
 package com.example.jpm.librarydemo.tools.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -26,5 +28,45 @@ public class RecyclerViewUtil {
         recyclerView.setEmptyView(view);
         recyclerView.setAdapter(adapter);
     }
+
+    public static <T> void setRecyclerViewEmpty(Context context, RecyclerViewEmptySupport recyclerView,
+                                                int divheight, CommonAdapter<T> adapter,
+                                                String orientation, boolean hasHeand, View view) {
+        layoutManager = new LinearLayoutManager(context);
+        if (!TextUtils.isEmpty(orientation)) {
+            layoutManager.setOrientation(Integer.parseInt(orientation));
+        }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DivItemDecoration(divheight, hasHeand));
+        recyclerView.setEmptyView(view);
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    public static <T> void setRecyclerView(Activity context, RecyclerView recyclerView,
+                                                int divheight, CommonAdapter<T> adapter,
+                                                String orientation, boolean hasHeand, View view) {
+        layoutManager = new LinearLayoutManager(context);
+        if (!TextUtils.isEmpty(orientation)) {
+            layoutManager.setOrientation(Integer.parseInt(orientation));
+        }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DivItemDecoration(divheight, hasHeand));
+        recyclerView.setAdapter(adapter);
+    }
+
+    public static <T> void setRecyclerView(Context context, RecyclerView recyclerView,
+                                           int divheight, CommonAdapter<T> adapter,
+                                           String orientation, boolean hasHeand, View view) {
+        layoutManager = new LinearLayoutManager(context);
+        if (!TextUtils.isEmpty(orientation)) {
+            layoutManager.setOrientation(Integer.parseInt(orientation));
+        }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DivItemDecoration(divheight, hasHeand));
+        recyclerView.setAdapter(adapter);
+    }
+
+
 
 }
