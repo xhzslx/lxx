@@ -67,6 +67,4 @@ public class RecyclerViewUtil {
         recyclerView.setAdapter(adapter);
     }
 
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.jpm.librarydemo.tools.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -39,6 +40,7 @@ public class NetUtil {
     /**
      * 判断是否是wifi连接
      */
+    @SuppressLint("MissingPermission")
     public static boolean isWifi(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

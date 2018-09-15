@@ -22,9 +22,9 @@ public class SharePreferencesUtil {
      * @param key
      * @param object
      */
-    public static void put(String key, Object object) {
+    public static void put(Context context,String key, Object object) {
 
-        SharedPreferences sp = MyApplication.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
@@ -54,7 +54,7 @@ public class SharePreferencesUtil {
      * @return
      */
     public static Object get(Context context, String key, Object defaultObject) {
-        SharedPreferences sp = MyApplication.getContext().getSharedPreferences(FILE_NAME,
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
 
         if (defaultObject instanceof String) {
@@ -78,8 +78,8 @@ public class SharePreferencesUtil {
      * @param
      * @param key
      */
-    public static void remove(String key) {
-        SharedPreferences sp = MyApplication.getContext().getSharedPreferences(FILE_NAME,
+    public static void remove(Context context,String key) {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
@@ -91,8 +91,8 @@ public class SharePreferencesUtil {
      *
      * @param
      */
-    public static void clear() {
-        SharedPreferences sp = MyApplication.getContext().getSharedPreferences(FILE_NAME,
+    public static void clear(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
