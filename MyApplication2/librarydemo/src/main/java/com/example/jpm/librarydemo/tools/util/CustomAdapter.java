@@ -7,15 +7,10 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
-public class CustomAdapter<T> extends CommonAdapter<T> {
+public abstract class CustomAdapter<T> extends CommonAdapter<T> {
 
     public CustomAdapter(Context context, int layoutId, List<T> datas) {
         super(context, layoutId, datas);
-    }
-
-    @Override
-    protected void convert(ViewHolder holder, T t, int position) {
-
     }
 
     public void setbeanList(List<T> list) {

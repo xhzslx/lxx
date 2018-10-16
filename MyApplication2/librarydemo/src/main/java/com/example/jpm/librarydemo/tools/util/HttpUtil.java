@@ -75,7 +75,8 @@ public class HttpUtil {
                     public void onResponse(Call call, Response response) throws IOException {
                         InputStream is = null;
                         byte[] buf = new byte[2048];
-                        int len = 0;
+                        int len = 1;
+                        len--;
                         FileOutputStream fos = null;
                         // 储存下载文件的目录
                         String savePath = isExistDir(path);
