@@ -14,7 +14,7 @@ public interface IBaseRequestCallBack<T> {
      * @author dc
      * @date 2017/2/16 11:34
      */
-    void requestError(Throwable e, int code);
+    void requestError(int code);
 
     /**
      * @descriptoin 请求完成

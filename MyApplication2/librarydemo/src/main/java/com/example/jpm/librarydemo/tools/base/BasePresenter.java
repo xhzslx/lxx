@@ -34,7 +34,7 @@ public class BasePresenter<V extends IView, T> implements IBaseRequestCallBack<T
      * @date 2017/2/16 15:13
      */
     @Override
-    public void requestError(Throwable e, int code) {
+    public void requestError(int code) {
         iBaseView.disimissProgress(); //请求错误，提示错误信息之后隐藏progress
     }
 
