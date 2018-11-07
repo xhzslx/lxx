@@ -6,7 +6,7 @@ package com.example.jpm.librarydemo.tools.base;
  */
 public class BasePresenter<V extends IView, T> implements IBaseRequestCallBack<T> {
 
-    private IView iBaseView = null;  //基类视图
+    public IView iBaseView = null;  //基类视图
 
     /**
      * @param view 具体业务的视图接口对象
