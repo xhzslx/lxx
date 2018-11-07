@@ -3,6 +3,8 @@ package com.example.jpm.librarydemo.tools.util;
 import java.util.List;
 
 public class ArraysUtil {
+
+    //list转换String 中间用不同符号隔开
     public static String listToString(List<String> list, String s) {
         if (list == null) {
             return null;
@@ -20,8 +22,9 @@ public class ArraysUtil {
         }
         return result.toString();
     }
-//封装字节数组与参数
 
+
+    //封装字节数组与参数
     public static byte[] getPacket(String json, byte[] image) {
         byte[] jsonb = json.getBytes();
         int length = image.length + jsonb.length;

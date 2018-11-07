@@ -1,6 +1,7 @@
 package com.example.jpm.librarydemo.tools.base;
 
 /**
+ * EventBus返回刷新数据实体类
  * Created by lx464 on 2018/3/23.
  */
 

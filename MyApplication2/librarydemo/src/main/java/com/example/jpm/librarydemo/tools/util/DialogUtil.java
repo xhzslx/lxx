@@ -4,6 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+/**
+ * @author lx
+ * created at 2018/4/17 11:03
+ * 作用：创建alertdialog
+ */
 public class DialogUtil {
 
     static AlertDialog.Builder builderSec;

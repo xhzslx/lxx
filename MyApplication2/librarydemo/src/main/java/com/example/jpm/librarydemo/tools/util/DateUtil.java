@@ -31,7 +31,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYY-MM-DD hh:mm:ss格式
+     * 获取yyyyMMddHHmmss格式的现在时间
      *
      * @return
      */
@@ -51,7 +51,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYY格式
+     * 获取YYYY格式当前年份
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYY-MM-DD格式
+     * 获取YYYY-MM-DD格式当前日期
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYYMMDD格式
+     * 获取YYYYMMDD格式当前日期
      *
      * @return
      */
@@ -78,7 +78,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYY-MM-DD hh:mm:ss格式
+     * 获取YYYY-MM-DD hh:mm:ss格式当前时间
      *
      * @return
      */
@@ -87,7 +87,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取YYYY-MM-DD hh:mm格式
+     * 获取YYYY-MM-DD hh:mm格式当前时间
      *
      * @return
      */
@@ -112,12 +112,11 @@ public class DateUtil {
     }
 
     /**
-     * 格式化日期
-     *
+     * 格式化日期转化成yyyy-MM-dd格式
      * @return
      */
     public static Date fomatDate(String date) {
-        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat fmt = SDF_DAY;
         try {
             return fmt.parse(date);
         } catch (ParseException e) {
@@ -127,12 +126,12 @@ public class DateUtil {
     }
 
     /**
-     * 格式化时间
+     * 格式化时间转化成yyyy-MM-dd HH:mm:ss格式
      *
      * @return
      */
     public static Date fomatTime(String date) {
-        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat fmt = SDF_TIMES;
         try {
             return fmt.parse(date);
         } catch (ParseException e) {
@@ -147,7 +146,7 @@ public class DateUtil {
      * @return
      */
     public static boolean isValidDate(String s) {
-        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat fmt = SDF_DAY;
         try {
             fmt.parse(s);
             return true;
@@ -160,7 +159,7 @@ public class DateUtil {
     // 将时间戳转为字符串
     public static String getStrTime(String cc_time) {
         String re_StrTime = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdf = SDF_TIME;
         long lcc_time = Long.valueOf(cc_time);
         re_StrTime = sdf.format(new Date(lcc_time));
         return re_StrTime;
@@ -169,7 +168,7 @@ public class DateUtil {
     // 将字符串转为时间戳
     public static String getTime(String user_time) {
         String re_time = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdf = SDF_TIME;
         Date d;
         try {
             d = sdf.parse(user_time);
@@ -185,7 +184,7 @@ public class DateUtil {
     // 将字符串转为时间戳
     public static String getDate(String user_time) {
         String re_time = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = SDF_DAY;
         Date d;
         try {
             d = sdf.parse(user_time);
@@ -210,7 +209,7 @@ public class DateUtil {
     }
 
     public static int getDiffYear(String startTime, String endTime) {
-        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat fmt = SDF_DAY;
         try {
             long aa = 0;
             int years = (int) (((fmt.parse(endTime).getTime() - fmt.parse(
@@ -232,7 +231,7 @@ public class DateUtil {
      */
     public static long getDaySub(String beginDateStr, String endDateStr) {
         long day = 0;
-        java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat format = SDF_DAY;
         java.util.Date beginDate = null;
         java.util.Date endDate = null;
 
@@ -263,7 +262,7 @@ public class DateUtil {
         Date date = canlendar.getTime();
 
 //        SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfd = SDF_DAY;
         String dateStr = sdfd.format(date);
 
         return dateStr;
@@ -317,7 +316,7 @@ public class DateUtil {
             str = str.replace("/Date(", "").replace(")/", "");
             String time = str.substring(0, str.length() - 5);
             Date date = new Date(Long.parseLong(time));
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format =SDF_DAY;
             return format.format(date);
         } else {
             return "";
@@ -421,34 +420,34 @@ public class DateUtil {
         return format.format(string);
     }
 
-    public static String getrqTime(Date date, int type, boolean flag) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = null;
-        switch (type) {
-            case 1:
-                if (flag) {
-                    format = new SimpleDateFormat("yyyy年MM月dd日日报");
-                } else {
-                    format = new SimpleDateFormat("yyyy年MM月dd日");
-                }
-
-                break;
-            case 3:
-                if (flag) {
-                    format = new SimpleDateFormat("yyyy年MM月月报");
-                } else {
-                    format = new SimpleDateFormat("yyyy年MM月");
-                }
-                break;
-            case 5:
-                if (flag) {
-                    format = new SimpleDateFormat("yyyy年年报");
-                } else {
-                    format = new SimpleDateFormat("yyyy年");
-                }
-
-                break;
-        }
-
-        return format.format(date);
-    }
+//    public static String getrqTime(Date date, int type, boolean flag) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = null;
+//        switch (type) {
+//            case 1:
+//                if (flag) {
+//                    format = new SimpleDateFormat("yyyy年MM月dd日日报");
+//                } else {
+//                    format = new SimpleDateFormat("yyyy年MM月dd日");
+//                }
+//
+//                break;
+//            case 3:
+//                if (flag) {
+//                    format = new SimpleDateFormat("yyyy年MM月月报");
+//                } else {
+//                    format = new SimpleDateFormat("yyyy年MM月");
+//                }
+//                break;
+//            case 5:
+//                if (flag) {
+//                    format = new SimpleDateFormat("yyyy年年报");
+//                } else {
+//                    format = new SimpleDateFormat("yyyy年");
+//                }
+//
+//                break;
+//        }
+//
+//        return format.format(date);
+//    }
 }

@@ -5,20 +5,21 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author lx
+ * created at 2018/4/17 11:03
+ * 作用：Gson类
+ */
 public class GsonUtil {
-    public static String createGsonString(Object object) {
-        Gson gson = new Gson();
-        String gsonString = gson.toJson(object);
-        return gsonString;
-    }
 
+    //把string转化成bean
     public static <T> T changeGsonToBean(String gsonString, Class<T> cls) {
         Gson gson = new Gson();
         T t = gson.fromJson(gsonString, cls);
         return t;
     }
 
+    //把string转化成List<bean>
     public static <T> List<T> changeGsonToList(String gsonString) {
         Gson gson = new Gson();
         List<T> list = gson.fromJson(gsonString, new TypeToken<List<T>>() {
@@ -26,7 +27,7 @@ public class GsonUtil {
         return list;
     }
 
-
+    //把string转化成List<Map<String,T>
     public static <T> List<Map<String, T>> changeGsonToListMaps(
             String gsonString) {
         List<Map<String, T>> list = null;
@@ -36,6 +37,7 @@ public class GsonUtil {
         return list;
     }
 
+    //把string转化成Map<String,bean>
     public static <T> Map<String, T> changeGsonToMaps(String gsonString) {
         Map<String, T> map = null;
         Gson gson = new Gson();

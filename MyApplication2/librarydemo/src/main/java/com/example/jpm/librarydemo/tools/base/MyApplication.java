@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.jpm.librarydemo.tools.util.RetrofitManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
@@ -60,13 +61,6 @@ public class MyApplication extends Application {
         }
     }
 
-    public static void delet() {
-        for (Activity activity : mlist) {
-            if (activity != null) {
-                activity.finish();
-            }
-        }
-    }
 
     @Override
     public void onCreate() {
@@ -93,6 +87,7 @@ public class MyApplication extends Application {
                 return new ClassicsFooter(mContext);
             }
         });
+        RetrofitManager.builder(this).init("");
     }
 
     //当内存低的时候 自动回收内存

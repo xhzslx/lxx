@@ -50,6 +50,7 @@ public class MyWebChromeClient extends WebChromeClient {
         openFileChooser(filePathCallback, acceptType);
     }
 
+    //进度条
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);

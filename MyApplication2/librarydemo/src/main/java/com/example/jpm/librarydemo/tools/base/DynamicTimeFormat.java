@@ -66,11 +66,11 @@ public class DynamicTimeFormat extends SimpleDateFormat {
                         toAppendTo.append(timeFormat);
                         break;
                     case 1:
-                        toAppendTo.append("昨天 ");
+                        toAppendTo.append("昨天");
                         toAppendTo.append(timeFormat);
                         break;
                     case 2:
-                        toAppendTo.append("前天 ");
+                        toAppendTo.append("前天");
                         toAppendTo.append(timeFormat);
                         break;
                     case 3:

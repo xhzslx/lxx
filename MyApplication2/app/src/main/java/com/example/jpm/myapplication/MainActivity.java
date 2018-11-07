@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyProgressDialog myProgressDialog=new MyProgressDialog(MainActivity.this);
-                myProgressDialog.show();
             }
         });
     }

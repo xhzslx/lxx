@@ -35,6 +35,7 @@ import java.net.URL;
 
 public class BitmapUtil {
     private static BitmapUtil util;
+
     public static BitmapUtil getInstance() {
 
         if (util == null) {
@@ -45,8 +46,126 @@ public class BitmapUtil {
 
     }
 
-    private BitmapUtil() {
-        super();
+    /**
+     * 放大缩小图片
+     *
+     * @param bitmap
+     * @param w
+     * @param h
+     * @return
+     */
+    public static Bitmap getZoomBitmap(Bitmap bitmap, int w, int h) {
+        Bitmap newbmp = null;
+        if (bitmap != null) {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            Matrix matrix = new Matrix();
+            float scaleWidht = ((float) w / width);
+            Log.i("helper", scaleWidht + "");
+            float scaleHeight = ((float) h / height);
+            matrix.postScale(scaleWidht, scaleHeight);
+            try {
+                newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
+                        true);
+            } catch (OutOfMemoryError error) {
+                error.printStackTrace();
+                ToastUtil.showShort(MyApplication.getContext(), "图片太大");
+            }
+
+        }
+        return newbmp;
+    }
+
+    //图片压缩
+    public static Bitmap compressImage(Bitmap image) {
+
+        Bitmap bitmap = null;// 把ByteArrayInputStream数据生成图片
+        if (bitmap != null && !bitmap.isRecycled()) {
+            // 回收并且置为null
+            bitmap.recycle();
+            bitmap = null;
+            System.gc();
+        }
+        ByteArrayOutputStream baos = null;
+        baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+
+        if (baos.toByteArray().length / 1024 <= 1024) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            Log.i("baos.tobytearray1", baos.toByteArray().length / 1024 + "");
+        } else if (baos.toByteArray().length / 1024 > 1024 && baos.toByteArray().length / 1024 <= 2048) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+            Log.i("baos.tobytearray3", baos.toByteArray().length / 1024 + "");
+        } else if (baos.toByteArray().length / 1024 > 2048 && baos.toByteArray().length / 1024 <= 4096) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
+        } else if (baos.toByteArray().length / 1024 > 4096 && baos.toByteArray().length / 1024 <= 8192) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, 12, baos);
+            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
+        } else if (baos.toByteArray().length / 1024 > 8192) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, 1, baos);
+            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
+        }
+        ByteArrayInputStream isBm = null;
+        // 把压缩后的数据baos存放到ByteArrayInputStream中
+        isBm = new ByteArrayInputStream(baos.toByteArray());
+        bitmap = BitmapFactory.decodeStream(isBm, null, null);
+        try {
+            if (baos != null) {
+                baos.flush();
+                baos.close();
+                baos = null;
+            }
+            System.gc();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    //获取bitmap的byte数组
+    public static byte[] getBitmapByte(Bitmap bitmap) {
+        ByteArrayOutputStream out = null;
+        out = new ByteArrayOutputStream();
+        //参数1转换类型，参数2压缩质量，参数3字节流资源
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        try {
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return out.toByteArray();
+    }
+
+    /**
+     * 将图片转为base64
+     *
+     * @param imgPath
+     * @param imgFormat
+     * @return
+     */
+    @SuppressLint("NewApi")
+    public String urlToBase64(String imgPath, String imgFormat) {
+        Bitmap bitmap = null;
+        if (imgPath != null && imgPath.length() > 0) {
+            bitmap = readBitmap(imgPath);
+        }
+        return bitmapToBase64(bitmap, imgFormat);
+
+    }
+
+    private Bitmap readBitmap(String imgPath) {
+        try {
+            return BitmapFactory.decodeFile(imgPath);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -88,36 +207,10 @@ public class BitmapUtil {
     }
 
     /**
-     * 将图片转为base64
-     *
-     * @param imgPath
-     * @param imgFormat
-     * @return
-     */
-    @SuppressLint("NewApi")
-    public String urlToBase64(String imgPath, String imgFormat) {
-        Bitmap bitmap = null;
-        if (imgPath != null && imgPath.length() > 0) {
-            bitmap = readBitmap(imgPath);
-        }
-        return bitmapToBase64(bitmap, imgFormat);
-
-    }
-
-    private Bitmap readBitmap(String imgPath) {
-        try {
-            return BitmapFactory.decodeFile(imgPath);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
      * 得到圆角的bitmap
      *
      * @param bitmap
-     * @param corner
-     *            以长或宽的比例为半径，2表示二分之一，8表示八分之一
+     * @param corner 以长或宽的比例为半径，2表示二分之一，8表示八分之一
      * @return
      */
     public Bitmap getRoundedCornerBitmap(Bitmap bitmap, int corner) {
@@ -171,10 +264,8 @@ public class BitmapUtil {
     /**
      * 设置Bitmap圆角
      *
-     * @param image
-     *            传入的Bitmap
-     * @param outerRadiusRat
-     *            圆角半径
+     * @param image          传入的Bitmap
+     * @param outerRadiusRat 圆角半径
      * @return 返回处理后的Bitmap
      */
     public Bitmap getRoundedBitmap(Bitmap image, int outerRadiusRat) {
@@ -207,26 +298,6 @@ public class BitmapUtil {
     }
 
     /**
-     * 图片压缩
-     *
-     * @param image
-     * @return
-     */
-    public Bitmap getCompressBitmap(Bitmap image, int minSize) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > minSize) {
-            options -= 10;
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
-        }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
-        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
-        return bitmap;
-    }
-
-    /**
      * 得到本地缩略图
      *
      * @param srcPath
@@ -254,35 +325,24 @@ public class BitmapUtil {
     }
 
     /**
-     * 放大缩小图片
+     * 图片压缩
      *
-     * @param bitmap
-     * @param w
-     * @param h
+     * @param image
      * @return
      */
-    public static Bitmap getZoomBitmap(Bitmap bitmap, int w, int h) {
-        Bitmap newbmp = null;
-        if (bitmap != null) {
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-            Matrix matrix = new Matrix();
-            float scaleWidht = ((float) w / width);
-            Log.i("helper",scaleWidht+"");
-            float scaleHeight = ((float) h / height);
-            matrix.postScale(scaleWidht, scaleHeight);
-            try {
-                newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
-                        true);
-            }catch (OutOfMemoryError error){
-                error.printStackTrace();
-                ToastUtil.showShort(MyApplication.getContext(),"图片太大");
-            }
-
+    public Bitmap getCompressBitmap(Bitmap image, int minSize) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        int options = 100;
+        while (baos.toByteArray().length / 1024 > minSize) {
+            options -= 10;
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
         }
-        return newbmp;
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
+        return bitmap;
     }
-
 
     /**
      * 得到网络图片的输入流
@@ -353,6 +413,7 @@ public class BitmapUtil {
 
     /**
      * 将bitmap存为本地图片
+     *
      * @param bitmap
      * @param path
      * @return
@@ -387,6 +448,7 @@ public class BitmapUtil {
 
     /**
      * 将本地图片转为输出流
+     *
      * @param path
      * @param size
      * @return
@@ -451,6 +513,7 @@ public class BitmapUtil {
 
     /**
      * 为了得到恰当的inSampleSize，Android提供了一种动态计算的方法
+     *
      * @param options
      * @param minSideLength
      * @param maxNumOfPixels
@@ -495,69 +558,5 @@ public class BitmapUtil {
         } else {
             return upperBound;
         }
-    }
-    public static Bitmap compressImage(Bitmap image) {
-
-        Bitmap bitmap = null;// 把ByteArrayInputStream数据生成图片
-        if (bitmap != null && !bitmap.isRecycled()) {
-            // 回收并且置为null
-            bitmap.recycle();
-            bitmap = null;
-            System.gc();
-        }
-        ByteArrayOutputStream baos = null;
-        baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-
-        if (baos.toByteArray().length / 1024 <= 1024) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            Log.i("baos.tobytearray1", baos.toByteArray().length / 1024 + "");
-        } else if (baos.toByteArray().length / 1024 > 1024 && baos.toByteArray().length / 1024 <= 2048) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-            Log.i("baos.tobytearray3", baos.toByteArray().length / 1024 + "");
-        } else if (baos.toByteArray().length / 1024 > 2048 && baos.toByteArray().length / 1024 <= 4096) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, 25, baos);
-            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
-        } else if (baos.toByteArray().length / 1024 > 4096 && baos.toByteArray().length / 1024 <= 8192) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, 12, baos);
-            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
-        } else if (baos.toByteArray().length / 1024 > 8192) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, 1, baos);
-            Log.i("baos.tobytearray4", baos.toByteArray().length / 1024 + "");
-        }
-        ByteArrayInputStream isBm = null;
-        // 把压缩后的数据baos存放到ByteArrayInputStream中
-        isBm = new ByteArrayInputStream(baos.toByteArray());
-        bitmap = BitmapFactory.decodeStream(isBm, null, null);
-        try {
-            if (baos != null) {
-                baos.flush();
-                baos.close();
-                baos = null;
-            }
-            System.gc();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
-
-    public static byte[] getBitmapByte(Bitmap bitmap) {
-        ByteArrayOutputStream out = null;
-        out = new ByteArrayOutputStream();
-        //参数1转换类型，参数2压缩质量，参数3字节流资源
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-        try {
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return out.toByteArray();
     }
 }

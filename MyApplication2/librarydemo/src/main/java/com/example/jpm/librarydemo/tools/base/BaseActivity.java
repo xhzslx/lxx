@@ -16,6 +16,10 @@ import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
+/**
+ * 屏幕适配、eventbus、点击空白edittext丧失焦点、状态栏浸入式布局的基础activity
+ * Created by lx464 on 2018/3/23.
+ */
 public class BaseActivity extends AutoLayoutActivity {
 
     @Override
@@ -23,6 +27,7 @@ public class BaseActivity extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
     }
 
+    //eventbus注销
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -31,6 +36,7 @@ public class BaseActivity extends AutoLayoutActivity {
         }
     }
 
+    //设置侵入式布局和注册eventbus并且设置布局
     public void setState(Activity activity, int layoutid, boolean hasEventbus) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         MyApplication.getInstance().addActivity(activity);
@@ -57,6 +63,8 @@ public class BaseActivity extends AutoLayoutActivity {
         getSupportActionBar().hide();
     }
 
+    /*************************************************************************/
+    //点击空白edittext丧失焦点
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -96,4 +104,5 @@ public class BaseActivity extends AutoLayoutActivity {
         }
         return false;
     }
+    /*************************************************************************/
 }

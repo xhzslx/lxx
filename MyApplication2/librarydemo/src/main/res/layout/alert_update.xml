@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/alert_update"
+    android:layout_width="match_parent"
+    android:layout_height="500px">
+    <TextView
+        android:id="@+id/update_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1345646466464"/>
+    <Button
+        android:id="@+id/update_cancel"
+        android:text="确定"
+        android:layout_below="@+id/update_content"
+        android:layout_width="200px"
+        android:layout_height="100px" />
+
+    <Button
+        android:id="@+id/update_determine"
+        android:text="取消"
+        android:layout_below="@+id/update_content"
+        android:layout_toRightOf="@+id/update_cancel"
+        android:layout_width="200px"
+        android:layout_height="100px"/>
+
+</RelativeLayout>
