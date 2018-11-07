@@ -1,32 +1,11 @@
 package com.example.jpm.librarydemo.tools.base;
 
-public interface IView<T>{
-    /**
-     * @descriptoin	请求前加载progress
-     * @author	dc
-     * @date 2017/2/16 11:00
-     */
-    void showProgress();
+/**
+ * Created by mayn on 2018/11/7.
+ */
 
-    /**
-     * @descriptoin	请求结束之后隐藏progress
-     * @author	dc
-     * @date 2017/2/16 11:01
-     */
-    void disimissProgress();
+public interface IView<T> {
+    void setSuccessData2View(T var1, int var2);
 
-    /**
-     * @descriptoin	请求数据成功
-     * @author	dc
-     * @date 2017/2/16 11:01
-     */
-    void setSuccessData2View(T t, int code);
-
-    /**
-     * @descriptoin	请求数据错误
-     * @author	dc
-     * @date 2017/2/16 11:01
-     */
-    void loadDataError(int code);
-
+    void setErrorData2View(int var1);
 }

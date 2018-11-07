@@ -4,9 +4,9 @@ package com.example.jpm.librarydemo.tools.base;
  * presenter的基础类
  * Created by lx464 on 2018/3/23.
  */
-public class BasePresenter<V extends IView, T> implements IBaseRequestCallBack<T> {
+public class BasePresenter<V extends IPlusView, T> implements IBaseRequestCallBack<T> {
 
-    public IView iBaseView = null;  //基类视图
+    public IPlusView iBaseView = null;  //基类视图
 
     /**
      * @param view 具体业务的视图接口对象
