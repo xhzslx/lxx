@@ -7,17 +7,15 @@ package com.example.jpm.librarydemo.tools.base;
 public class BasePresenter<T> {
     private T mview;
 
-    public BasePresenter() {
+    public BasePresenter(T view) {
+        this.mview = view;
     }
 
     public void detach() {
-        if(this.mview != null) {
+        if (this.mview != null) {
             this.mview = null;
         }
 
     }
 
-    public void attach(T view) {
-        this.mview = view;
-    }
 }
