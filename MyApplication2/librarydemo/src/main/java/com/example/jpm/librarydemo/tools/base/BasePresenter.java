@@ -5,7 +5,7 @@ package com.example.jpm.librarydemo.tools.base;
  */
 
 public class BasePresenter<T> {
-    private T mview;
+    public T mview;
 
     public BasePresenter(T view) {
         this.mview = view;
