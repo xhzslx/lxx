@@ -6,34 +6,57 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jpm.librarydemo.tools.base.IPlusView;
+import com.example.jpm.librarydemo.tools.util.ToastUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IPlusView {
 
     private TextView textView;
-    private List<test> list=new ArrayList<>();
-    private List<test> copylist=new ArrayList<>();
+    private Presenter presenter;
+    private SignInbean signInbean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for (int i=0;i<5;i++){
-            test test1=new test();
-            test1.setBean(i);
-            list.add(test1);
-            copylist.add(test1);
-        }
-        textView=findViewById(R.id.lx);
+        presenter = new Presenter(this);
+        textView = findViewById(R.id.lx);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                for (int i=0;i<list.size();i++){
-                    list.get(i).setBean(-1);
-                }
-
-                Toast.makeText(MainActivity.this,copylist.get(0).getBean()+"",Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                presenter.loadData("tcfgw",
+                        "CAF1A3DFB505FFED0D024130F58C5CFA");
             }
         });
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void disimissProgress() {
+
+    }
+
+    @Override
+    public void setSuccessData2View(Object o, int code) {
+        switch (code){
+            case 10000:
+                signInbean= (SignInbean) o;
+                ToastUtil.showShort(MainActivity.this,signInbean
+                        .getBody().get(0).getM_Name());
+                break;
+        }
+
+    }
+
+    @Override
+    public void loadDataError(int code) {
+        ToastUtil.showShort(MainActivity.this,"网络错误");
     }
 }

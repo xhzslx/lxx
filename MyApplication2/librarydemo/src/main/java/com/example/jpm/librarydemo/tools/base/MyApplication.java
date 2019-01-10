@@ -6,7 +6,6 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.example.jpm.librarydemo.tools.util.RetrofitManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
@@ -87,7 +86,8 @@ public class MyApplication extends Application {
                 return new ClassicsFooter(mContext);
             }
         });
-        RetrofitManager.builder(this).init("");
+//        RetrofitManager.builder(this).init("");
+
     }
 
     //当内存低的时候 自动回收内存

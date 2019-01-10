@@ -1,10 +1,12 @@
 package com.example.jpm.librarydemo.tools.base;
 
+import com.example.jpm.librarydemo.tools.util.LoggUtil;
+
 /**
  * presenter的基础类
  * Created by lx464 on 2018/3/23.
  */
-public class BasePlusPresenter<V extends IPlusView, T> implements IBaseRequestCallBack<T> {
+public class BasePlusPresenter<V extends IPlusView, T> implements IPlusPresenter {
 
     public IPlusView iBaseView = null;  //基类视图
 
@@ -18,51 +20,34 @@ public class BasePlusPresenter<V extends IPlusView, T> implements IBaseRequestCa
         this.iBaseView = view;
     }
 
-    /**
-     * @descriptoin 请求之前显示progress
-     * @author dc
-     * @date 2017/2/16 15:13
-     */
-    @Override
-    public void beforeRequest() {
-        iBaseView.showProgress();
-    }
-
-    /**
-     * @descriptoin 请求异常显示异常信息
-     * @author dc
-     * @date 2017/2/16 15:13
-     */
-    @Override
-    public void requestError(int code) {
-        iBaseView.disimissProgress(); //请求错误，提示错误信息之后隐藏progress
-    }
-
-    /**
-     * @descriptoin 请求完成之后隐藏progress
-     * @author dc
-     * @date 2017/2/16 15:14
-     */
-    @Override
-    public void requestComplete() {
-        iBaseView.disimissProgress();
-    }
-
-    /**
-     * @param callBack 回调的数据
-     * @descriptoin 请求成功获取成功之后的数据信息
-     * @author dc
-     * @date 2017/2/16 15:14
-     */
-    @Override
-    public void requestSuccess(T callBack, int code) {
-        iBaseView.setSuccessData2View(callBack, code);
-    }
-
     //Presenter注销接口防止内存泄漏
     public void detach() {
         if (iBaseView != null) {
             iBaseView = null;
         }
     }
+
+    @Override
+    public void showProgress() {
+        iBaseView.showProgress();
+    }
+
+    @Override
+    public void disimissProgress() {
+        iBaseView.showProgress();
+    }
+
+    @Override
+    public void setSuccessData2Presenter(Object result, int code) {
+//        ToastUtil.showShort(MyApplication.getContext(),"1");
+        LoggUtil.i("url","1");
+        iBaseView.setSuccessData2View(result, code);
+    }
+
+
+    @Override
+    public void loadDataError(int code) {
+        iBaseView.loadDataError(code);
+    }
+
 }

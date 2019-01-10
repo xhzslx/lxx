@@ -1,6 +1,10 @@
 package com.example.jpm.librarydemo.tools.base;
 
-public interface IPlusView<T> {
+/**
+ * Created by mayn on 2018/12/10.
+ */
+
+public interface IPlusPresenter<T> {
 
     /**
      * @descriptoin 请求前加载progress
@@ -22,7 +26,7 @@ public interface IPlusView<T> {
      * @author dc
      * @date 2017/2/16 11:01
      */
-    void setSuccessData2View(T t, int code);
+    void setSuccessData2Presenter(T result, int code);
 
     /**
      * @descriptoin 请求数据错误
@@ -30,5 +34,4 @@ public interface IPlusView<T> {
      * @date 2017/2/16 11:01
      */
     void loadDataError(int code);
-
 }

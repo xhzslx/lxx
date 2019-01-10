@@ -289,4 +289,40 @@ public class HttpUtil {
             }
         });
     }
+
+    public static void okHttpPostMethod(final String url, final byte[] bytes, final XCallBack callback, final int code) {
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(20, TimeUnit.SECONDS).build();//设置读取超时时间
+        // 创建请求参数
+        Request request = new Request.Builder().url(url).
+                post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8")
+                        , bytes))
+                .addHeader("content-type", "binary/octet-stream")
+                .build();
+
+        // 创建请求对象
+        Call call = okHttpClient.newCall(request);
+        // 发起请求
+        call.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                LoggUtil.i("test", "error");
+                callback.onError(code);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    LoggUtil.i("test", "successful");
+                    String result = response.body().string();
+                    callback.onResponse(result, code);
+                }else{
+                    LoggUtil.i("test", "error2");
+                    callback.onError(code);
+                }
+            }
+        });
+    }
 }

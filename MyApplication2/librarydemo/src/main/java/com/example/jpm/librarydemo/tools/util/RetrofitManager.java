@@ -2,9 +2,6 @@ package com.example.jpm.librarydemo.tools.util;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.example.jpm.librarydemo.tools.base.ApiService;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +10,7 @@ import java.net.URLDecoder;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,24 +18,69 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * Created by mayn on 2019/1/10.
+ */
 
 public class RetrofitManager {
 
-    //查询网络的Cache-Control设置
-    //(假如请求了服务器并在a时刻返回响应结果，则在max-age规定的秒数内，浏览器将不会发送对应的请求到服务器，数据由缓存直接返回)
-    public static final String CACHE_CONTROL_NETWORK = "Cache-Control: public, max-age=3600";
-    public String url="";
-    // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
-    static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 " +
-            "(Windows NT 6.1; WOW64) AppleWebKit/537.11 " +
-            "(KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
     //设置缓存有效期
-    private static final long CACHE_STALE_SEC = 24 * 60 * 60 * 1;
-    //查询缓存的Cache-Control设置，为if-only-cache时只查询缓存而不会请求服务器，max-stale可以配合设置缓存失效时间
-    private static final String CACHE_CONTROL_CACHE = "only-if-cached, max-stale="
-            + CACHE_STALE_SEC;
+    private static final long CACHE_STATE_LONG = 24 * 60 * 60 * 7;
+
+    private static final int CACHE_STATE_SHORT = 60;
+
+    private static final String CACHE_COMTROL_AGE = "Cache-Control: public ,max-age=";
+    //查询缓存的Cache_Control设置，为if-only-cache时只查询缓存而不会请求服务器，max-stale可以配合
+    //设置缓存失效时间
+    private static final String CACHE_CONTROL_CACHE = "only-if-cached,max-stale=" + CACHE_STATE_LONG;
+
+    //(假如请求了服务器并在a时刻返回响应结果，则在max-age规定的秒数内，浏览器将不会发送对应的请求到服务器，数据由缓存直接返回)
+    public static final String CACHE_CONTROL_NETWORK = "Cache-Control: public, max-age=0";
+    // 避免出现 HTTP 403 Forbidden，参考：http://stackoverflow.com/questions/13670692/403-forbidden-with-java-but-not-web-browser
+    static final String AVOID_HTTP403_FORBIDDEN = "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
+
+    private OkHttpClient mOkHttpClient;
+    public static volatile RetrofitManager manager;
+    private Retrofit retrofit;
+    public static Context context;
+    private String url;
+    private static Class apiService;
+    private Object myservice;
+
+
+    private RetrofitManager() {
+        initRetrofit();
+    }
+
+
+    private void initRetrofit() {
+        // 指定缓存路径,缓存大小100Mb
+        Cache cache = new Cache(new File(context.getCacheDir(), "HttpCache"),
+                1024 * 1024 * 100);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().cache(cache)
+                .retryOnConnectionFailure(true)
+                .addInterceptor(sLoggingInterceptor)
+                .addInterceptor(sRewriteCacheControlInterceptor)
+                .addNetworkInterceptor(sRewriteCacheControlInterceptor)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .build();
+
+        retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl((String) SharePreferencesUtil.get(context, "baseurl", ""))
+                .build();
+        myservice = retrofit.create(apiService);
+    }
+
+    public Object getApiService() {
+        return myservice;
+    }
+
     /**
      * 云端响应头拦截器，用来配置缓存策略
      */
@@ -46,25 +89,25 @@ public class RetrofitManager {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-//            if (!NetUtil.isNetworkAvailable(MyApplication.getContext())) {
-//                request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
-//                Logger.e("no network");
-//            }
+            if (!NetUtil.isConnected(context)) {
+                request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
+                LoggUtil.e("RetrofitManager", "no network");
+            }
             Response originalResponse = chain.proceed(request);
 
-//            if (NetUtil.isNetworkAvailable(App.getContext())) {
-//                //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
+            if (NetUtil.isConnected(context)) {
+                //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
                 String cacheControl = request.cacheControl().toString();
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
                         .removeHeader("Pragma")
                         .build();
-//            } else {
-//                return originalResponse.newBuilder()
-//                        .header("Cache-Control", "public, " + CACHE_CONTROL_CACHE)
-//                        .removeHeader("Pragma")
-//                        .build();
-//            }
+            } else {
+                return originalResponse.newBuilder()
+                        .header("Cache-Control", "public, " + CACHE_CONTROL_CACHE)
+                        .removeHeader("Pragma")
+                        .build();
+            }
         }
     };
 
@@ -80,58 +123,15 @@ public class RetrofitManager {
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
             } else {
-                Log.d("LogTAG", "request.body() == null");
+                LoggUtil.d("LogTAG", "request.body() == null");
             }
             //打印url信息
-            Log.i("LogTAG",request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
+            LoggUtil.i("RetrofitManager", request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
             final Response response = chain.proceed(request);
 
             return response;
         }
     };
-    private static ApiService apiService;
-
-    public static ApiService getApiService(){
-        return apiService;
-    }
-
-    public static RetrofitManager builder(Context context) {
-        return new RetrofitManager(context);
-    }
-
-    public ApiService getService() {
-        return apiService;
-    }
-
-    private RetrofitManager(Context context) {
-        // 指定缓存路径,缓存大小100Mb
-        Cache cache = new Cache(new File(context.getCacheDir(), "HttpCache"),
-                1024 * 1024 * 100);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().cache(cache)
-                .retryOnConnectionFailure(true)
-                .addInterceptor(sLoggingInterceptor)
-                .addInterceptor(sRewriteCacheControlInterceptor)
-                .addNetworkInterceptor(sRewriteCacheControlInterceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(url)
-                .build();
-        apiService = retrofit.create(ApiService.class);
-
-
-    }
-    /**
-     * 初始化网络服务
-     */
-    public void init(String url) {
-        this.url=url;
-    }
 
     @NonNull
     private static String _parseParams(RequestBody body, Buffer requestBuffer) throws UnsupportedEncodingException {
@@ -142,6 +142,19 @@ public class RetrofitManager {
     }
 
 
-
+    public static RetrofitManager getInstance(Context context, Class myclass) {
+        if (RetrofitManager.context == null) {
+            RetrofitManager.context = context;
+        }
+        apiService = myclass;
+        if (manager == null) {
+            synchronized (RetrofitManager.class) {
+                if (manager == null) {
+                    manager = new RetrofitManager();
+                }
+            }
+        }
+        return manager;
+    }
 
 }
