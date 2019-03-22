@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jpm.librarydemo.tools.base.IPlusView;
+import com.example.jpm.librarydemo.tools.util.RetrofitManager;
 import com.example.jpm.librarydemo.tools.util.ToastUtil;
 
 import java.util.ArrayList;

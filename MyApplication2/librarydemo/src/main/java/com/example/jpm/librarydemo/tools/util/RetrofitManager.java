@@ -51,7 +51,7 @@ public class RetrofitManager {
     private Object myservice;
 
 
-    private RetrofitManager() {
+    public RetrofitManager() {
         initRetrofit();
     }
 
