@@ -123,6 +123,7 @@ public class AlertDialogUtil {
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
         alertDialog.show();
+        alertDialog.setCanceledOnTouchOutside(false);
         return builder;
     }
 
